@@ -18,22 +18,3 @@ http {
         }
 }
 
-
-
-
-#!/usr/bin/env bash
-# script to configure nginx
-
-events {
-
-
-}
-
-http {
-        server {
-                listen 80;
-                server_name stanceray.tech;
-                root /etc/nginx/website/html;
-                index index.html;
-        }
-}
