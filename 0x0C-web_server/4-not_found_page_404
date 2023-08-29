@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# script for a page that isn't found
+
+events {
+
+
+}
+
+http {
+        server {
+                listen 80;
+                server_name stanceray.tech;
+                root /etc/nginx/website/html;
+                index index.html;
+
+                location /redirect_me {
+                        return 301 https://stanceray.com;
+                }
+                error_page 404 /404.html;
+                location = /404.html {
+                        root /etc/nginx/website/html;
+                        internal;
+                }
+        }
+}
