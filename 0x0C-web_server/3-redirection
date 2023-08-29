@@ -1,21 +1,36 @@
-#!/usr/bin/env bash
-# script tohandle url redirection
-events {
+#!/bin/bash
+# script to redirect url
+# Update package information
+sudo apt-get update
 
+# Install nginx
+sudo apt-get install -y nginx
+
+# Create the NGINX configuration file
+sudo tee /etc/nginx/nginx.conf > /dev/null <<EOF
+events {
 
 }
 
 http {
-        server {
-                listen 80;
-                server_name stanceray.tech;
-                root /etc/nginx/website/html;
-                index index.html;
+    server {
+        listen 80;
+        server_name stanceray.tech;
+        root /etc/nginx/website/html;
+        index index.html;
 
-                location /redirect_me {
-                        return 301 https://stanceray.com;
-                }
+        location /redirect_me {
+            return 301 https://stanceray.com;
         }
+    }
 }
+EOF
 
+# Create the directory for the website
+sudo mkdir -p /etc/nginx/website/html
 
+# Create the index.html file
+echo "Hello World!" | sudo tee /etc/nginx/website/html/index.html
+
+# Restart nginx service
+sudo service nginx restart
