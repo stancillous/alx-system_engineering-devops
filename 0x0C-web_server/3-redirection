@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
-# Script that configures a new Ubuntu machine to respect above requirements
+# script tohandle url redirection
+events {
 
-sudo apt-get update
-sudo apt-get install -y nginx
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/oluwaseundasilva.hashnode.dev permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+}
 
-sudo service nginx restart
+http {
+        server {
+                listen 80;
+                server_name stanceray.tech;
+                root /etc/nginx/website/html;
+                index index.html;
+
+                location /redirect_me {
+                        return 301 https://stanceray.com;
+                }
+        }
+}
+
+
