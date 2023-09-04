@@ -5,23 +5,6 @@ sudo apt update -y
 sudo apt upgrade
 sudo apt install nginx -y
 
-sudo mkdir /etc/nginx/website
-touch /etc/nginx/website/index.html
-echo "Hello World!" > /etc/nginx/website/index.html
+echo "Hello World!" > /var/www/website/index.html
 
-echo "events {
-
-
-}
-
-http {
-        server {
-                listen 80;
-                server_name stanceray.tech;
-                root /etc/nginx/website;
-                index index.html;
-        }
-}" > /etc/nginx/sites-enabled/default
-
-# sudo nginx -s reload
 sudo service nginx restart
