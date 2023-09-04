@@ -23,6 +23,7 @@ http {
                 server_name stanceray.tech;
                 root /var/www/html;
                 index index.html;
+                add_header X-Served-By $HOSTNAME;
 
                 location /redirect_me {
                         return 301 https://stanceray.com;
