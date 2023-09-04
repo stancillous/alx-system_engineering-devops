@@ -20,6 +20,6 @@ http {
                 root /var/www/html;
                 index index.html;
         }
-}" > /etc/nginx/sites-enabled/default
+}" > /etc/nginx/nginx.conf
 
 sudo service nginx restart
