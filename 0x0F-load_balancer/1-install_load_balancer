@@ -5,15 +5,14 @@
 sudo apt-get upgrade -y
 sudo apt-get install haproxy -y
 
+echo "ENABLED=1" > /etc/default/haproxy
 
-echo "frontend haproxy-main
+echo "frontend http_front
 bind *:80
-option http-server-close
-option forwardfor
-default_backend app-main
+stats uri /haproxy?stats
+default_backend http_back
 
-backend app-main
+backend http-back
 balance roundrobin
-option httpcheck HEAD / HTTP/1.1\r\nHOST:\localhost
-server ubuntu 100.25.111.120 check
-server ubuntu 54.152.132.135 check " > /etc/haproxy/haproxy.cfg
+server ubuntu 100.25.111.120:80 check
+server ubuntu 54.152.132.135:80 check " > /etc/haproxy/haproxy.cfg
