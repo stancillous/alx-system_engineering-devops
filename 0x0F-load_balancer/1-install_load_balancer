@@ -7,7 +7,7 @@ sudo apt install nginx -y
 
 mkdir /etc/nginx/website
 touch /etc/nginx/website/index.html
-echo "Hello World :)\n" >> /etc/nginx/website/index.html
+echo "Hello World!" > /etc/nginx/website/index.html
 
 # error page
 touch /etc/nginx/website/404.html
@@ -37,5 +37,6 @@ http {
         }
 }" > /etc/nginx/sites-enabled/default
 
+# sudo nginx -t
 # sudo nginx -s reload
 sudo service nginx restart
