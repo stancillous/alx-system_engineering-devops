@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# script to configure a new server
+
+sudo apt update -y
+sudo apt upgrade
+sudo apt install nginx -y
+
+mkdir /etc/nginx/website
+touch /etc/nginx/website/index.html
+echo "Hello World :)\n" >> /etc/nginx/website/index.html
+
+# error page
+touch /etc/nginx/website/404.html
+echo "Ceci n'est pas une page" > /etc/nginx/website/404.html
+
+echo "events {
+
+
+}
+
+http {
+        server {
+                listen 80;
+                server_name stanceray.tech;
+                root /etc/nginx/website;
+                index index.html;
+                add_header X-Served-By "03-web-02";
+
+                location /redirect_me {
+                        return 301 https://stanceray.com;
+                }
+                error_page 404 /404.html;
+                location = /404.html {
+                        root /etc/nginx/website;
+                        internal;
+                }
+        }
+}" > /etc/nginx/sites-enabled/default
+
+sudo nginx -s reload
