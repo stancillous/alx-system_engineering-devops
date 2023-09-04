@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Script to handle url redirection
 
-sudo apt update -y
-sudo apt upgrade
-sudo install nginx -y
+sudo apt update 
+sudo apt upgrade -y
+sudo apt install nginx -y
 
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 
 echo "events {
 
@@ -15,13 +17,13 @@ http {
         server {
                 listen 80;
                 server_name stanceray.tech;
-                root /etc/nginx//html;
+                root /var/www/html;
                 index index.html;
 
                 location /redirect_me {
                         return 301 https://stanceray.com;
                 }
         }
-}" > /etc/nginx/sites-enabled
+}" > /etc/nginx/nginx.conf
 
 sudo service nginx restart
