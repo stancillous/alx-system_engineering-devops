@@ -37,4 +37,5 @@ http {
         }
 }" > /etc/nginx/sites-enabled/default
 
-sudo nginx -s reload
+# sudo nginx -s reload
+sudo service nginx restart
