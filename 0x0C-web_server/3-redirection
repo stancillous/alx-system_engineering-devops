@@ -1,11 +1,27 @@
 #!/usr/bin/env bash
 # Script to handle url redirection
 
-sudo apt-get update
-sudo apt-get install -y nginx
+sudo apt update -y
+sudo apt upgrade
+sudo install nginx -y
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/oluwaseundasilva.hashnode.dev permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+echo "events {
+
+
+}
+
+http {
+        server {
+                listen 80;
+                server_name stanceray.tech;
+                root /etc/nginx//html;
+                index index.html;
+
+                location /redirect_me {
+                        return 301 https://stanceray.com;
+                }
+        }
+}" > /etc/nginx/sites-enabled
 
 sudo service nginx restart

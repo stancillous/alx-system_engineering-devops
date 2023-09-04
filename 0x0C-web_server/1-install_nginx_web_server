@@ -1,8 +1,25 @@
 #!/usr/bin/env bash
 # script to install and configure nginx
 
-apt-get update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
+sudo apt update 
+sudo apt upgrade -y
+sudo apt install nginx -y
+
+touch /var/www/html/index.html
 echo "Hello World!" > /var/www/html/index.html
-service nginx start
+
+echo "events {
+
+
+}
+
+http {
+        server {
+                listen 80;
+                server_name stanceray.tech;
+                root /var/www/html;
+                index index.html;
+        }
+}" > /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
