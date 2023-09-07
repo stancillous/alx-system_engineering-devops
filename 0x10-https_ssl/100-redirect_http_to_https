@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# script to configure HAproxy to accept encrypted traffic for the subdomain www.
+# script to configure HAproxy redirect http requests to https
 
 global
         log /dev/log    local0
@@ -40,6 +40,7 @@ frontend https_front
         mode http
         bing :80
         bind :443 ssl crt /etc/haproxy/cert/fullchain.pem
+        http-request redirect scheme https unless { ssl_fc }
         default_backend http_back
 
 backend http_back
