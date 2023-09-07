@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to fix nginx error
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default # keep in sync
+sudo service nginx restart
