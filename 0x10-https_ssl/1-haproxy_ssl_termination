@@ -40,6 +40,8 @@ frontend https_front
         mode http
         bing *:80
         bind *:443 ssl crt /etc/ssl/certs/stanceray.pem
+        http-request set-header X-Forwarded-Proto https if { ssl_fc }
+        http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
         default_backend http_back
 
 backend http_back
