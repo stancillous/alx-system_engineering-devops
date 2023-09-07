@@ -38,8 +38,8 @@ defaults
 
 frontend https_front
         mode http
-        bing :80
-        bind :443 ssl crt /etc/haproxy/cert/fullchain.pem
+        bing *:80
+        bind *:443 ssl crt /etc/ssl/certs/stanceray.pem
         default_backend http_back
 
 backend http_back
