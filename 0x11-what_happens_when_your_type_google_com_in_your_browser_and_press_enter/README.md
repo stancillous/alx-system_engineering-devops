@@ -1,0 +1,1 @@
+<h4>This directory contains a blog post that tries to explain what happens when a user types a domain name into the browser and hits enter</h4>
