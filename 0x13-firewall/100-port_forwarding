@@ -1,3 +1,7 @@
 #!/usr/env/bin bash
 # command for my web's firewall to redirect port 8080/TCP to 80/TCP
-sudo ufw route allow proto tcp from any to any port 8080 redirect to port 80
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+sudo iptables-restore < port-forwarding.conf
