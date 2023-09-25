@@ -24,7 +24,7 @@ if __name__ == "__main__":
             completed_tasks_list.append(item.get('title'))
             completed_tasks += 1
 
-    print(f"Employee {employee_name} is done \
-    with tasks ({completed_tasks}/{total_tasks})")
+    print("Employee {} is done with tasks ({}/{})".
+          format(employee_name, completed_tasks, total_tasks))
     for task in completed_tasks_list:
         print(f"\t{task}")
