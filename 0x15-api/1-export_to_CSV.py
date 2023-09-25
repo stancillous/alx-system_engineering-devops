@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" script that, using a REST API, for a given employee ID,
-returns information about his/her todo list progress."""
+""" script to export data in the CSV format."""
 
 if __name__ == "__main__":
     import csv
