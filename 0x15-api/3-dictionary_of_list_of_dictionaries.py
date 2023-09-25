@@ -16,6 +16,7 @@ if __name__ == "__main__":
     during each iteration, get current employee's tasks
     """
 
+    employees_dict = {}
     for employee in all_employees:
         # everything inside this for loop will happen for
         # the current iterated employee, including writing/appending
@@ -27,19 +28,16 @@ if __name__ == "__main__":
         tasks_response = (request("GET", employee_tasks_url)).json()
 
         user_tasks_list = []
+        employees_dict[employee_id] = []
         for task in tasks_response:
             # for each task of a user, append a dict of
             # the task's details into the above array
-            user_tasks_list.append({
+            employees_dict[employee_id].append({
                 "username": employee_name,
                 "task": task.get('title'),
                 "completed": task.get('completed')
             })
 
-        with open(filename, 'a') as jsonFile:
-            # write the data, key is the user_id and
-            # value is an array of dicts of each task
-            user_json_data = {
-                employee_id: user_tasks_list
-            }
-            jsonFile.write(json.dumps(user_json_data))
+    with open(filename, 'w') as jsonFile:
+
+        jsonFile.write(json.dumps(employees_dict))
