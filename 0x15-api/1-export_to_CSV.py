@@ -12,7 +12,7 @@ if __name__ == "__main__":
     user_info_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
 
     filename = "{}.csv".format(user_id)  # to store the csv data
-    user_tasks_list = []  # 2d list to store all tasks of a user
+    user_tasks_list = []  # 2d list to store all tasks of a given user
 
     tasks_response = (request("GET", task_url)).json()
     user_response = request("GET", user_info_url).json()
