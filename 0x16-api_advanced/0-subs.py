@@ -1,4 +1,4 @@
-#usr/bin/python3
+#!usr/bin/python3
 
 import requests
 """
@@ -12,12 +12,12 @@ def number_of_subscribers(subreddit):
     Function that queries the Reddit API
     - If subreddit is invalid, return 0.
     """
-    req = requests.get(
+    req_response = requests.get(
         "https://www.reddit.com/r/{}/about.json".format(subreddit),
         headers={"User-Agent": "Custom"}
     )
 
-    if req.status_code == 200:
-        return req.json().get("data").get("subscribers")
+    if req_response.status_code == 200:
+        return req_response.json().get("data").get("subscribers")
     else:
         return 0
